@@ -1,0 +1,14 @@
+{
+  "com.sap::TCURN": {
+    "target": {
+      "object": "TCURN",
+      "schema": "LOGALI"
+    }
+  },
+  "com.sap::TCURX": {
+    "target": {
+      "object": "TCURX",
+      "schema": "LOGALI"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+COLUMN TABLE T_COUNTRY_ID (
+    ID INTEGER NOT NULL,
+    CountryID NVARCHAR(5) NOT NULL,
+    CountryName NVARCHAR(100),
+    CurrencyID NVARCHAR(3),
+    CountryCode NVARCHAR(2),
+    RegionID NVARCHAR(5),
+    Language NVARCHAR(50),
+    TaxRate DECIMAL(5, 2),
+    PRIMARY KEY (ID, CountryID)
+) COMMENT 'Country Table';

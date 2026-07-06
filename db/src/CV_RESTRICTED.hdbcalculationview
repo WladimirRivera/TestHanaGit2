@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="CV_RESTRICTED" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_RESTRICTED"/>
+<localVariables>
+  <variable id="IP_1" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="13" mandatory="true" defaultValue="Portuguese">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="T_COUNTRY">
+    <resourceUri>T_COUNTRY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="COUNTRYID"/>
+      <viewAttribute id="COUNTRYNAME"/>
+      <viewAttribute id="CURRENCYID"/>
+      <viewAttribute id="COUNTRYCODE"/>
+      <viewAttribute id="REGIONID"/>
+      <viewAttribute id="LANGUAGE"/>
+      <viewAttribute id="TAXRATE" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes>
+      <restrictedViewAttribute id="RES_1" baseViewAttribute="TAXRATE" restrictionExpressionLanguage="SQL">
+        <descriptions defaultDescription=""/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="LANGUAGE">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Spanish"/>
+          </filter>
+          <attributeName>LANGUAGE</attributeName>
+        </restriction>
+      </restrictedViewAttribute>
+      <restrictedViewAttribute id="RES_2" baseViewAttribute="TAXRATE" restrictionExpressionLanguage="SQL">
+        <descriptions defaultDescription=""/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="LANGUAGE">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_1$$"/>
+          </filter>
+          <attributeName>LANGUAGE</attributeName>
+        </restriction>
+      </restrictedViewAttribute>
+      <restrictedViewAttribute id="RES_3" baseViewAttribute="TAXRATE" restrictionExpressionLanguage="SQL">
+        <descriptions defaultDescription=""/>
+        <restrictionExpression>&quot;LANGUAGE&quot; = 'Spanish'</restrictionExpression>
+      </restrictedViewAttribute>
+    </restrictedViewAttributes>
+    <input node="T_COUNTRY"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="COUNTRYID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRYID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="COUNTRYID"/>
+    </attribute>
+    <attribute id="COUNTRYNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRYNAME"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="COUNTRYNAME"/>
+    </attribute>
+    <attribute id="CURRENCYID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCYID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CURRENCYID"/>
+    </attribute>
+    <attribute id="COUNTRYCODE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRYCODE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="COUNTRYCODE"/>
+    </attribute>
+    <attribute id="REGIONID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGIONID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="REGIONID"/>
+    </attribute>
+    <attribute id="LANGUAGE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LANGUAGE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="LANGUAGE"/>
+    </attribute>
+    <attribute id="TAXRATE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAXRATE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="TAXRATE"/>
+    </attribute>
+    <attribute id="RES_1" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RES_1"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="RES_1"/>
+    </attribute>
+    <attribute id="RES_2" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RES_2"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="RES_2"/>
+    </attribute>
+    <attribute id="RES_3" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RES_3"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="RES_3"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="85" y="202"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

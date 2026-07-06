@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_JOIN" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_JOIN"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="T_CITY">
+    <resourceUri>T_CITY</resourceUri>
+  </DataSource>
+  <DataSource id="T_COUNTRY">
+    <resourceUri>T_COUNTRY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CITYID"/>
+      <viewAttribute id="CITYNAME"/>
+      <viewAttribute id="POPULATION" aggregationType="sum"/>
+      <viewAttribute id="TIMEZONE"/>
+      <viewAttribute id="COUNTRYID"/>
+      <viewAttribute id="COUNTRYNAME"/>
+      <viewAttribute hidden="true" id="JOIN$COUNTRYID$COUNTRYID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="T_CITY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYID" source="CITYID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYNAME" source="CITYNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POPULATION" source="POPULATION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TIMEZONE" source="TIMEZONE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$COUNTRYID$COUNTRYID" source="COUNTRYID"/>
+    </input>
+    <input node="T_COUNTRY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRYID" source="COUNTRYID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRYNAME" source="COUNTRYNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$COUNTRYID$COUNTRYID" source="COUNTRYID"/>
+    </input>
+    <joinAttribute name="JOIN$COUNTRYID$COUNTRYID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="CITYID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITYID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CITYID"/>
+    </attribute>
+    <attribute id="CITYNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITYNAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="CITYNAME"/>
+    </attribute>
+    <attribute id="TIMEZONE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TIMEZONE"/>
+      <keyMapping columnObjectName="Join_1" columnName="TIMEZONE"/>
+    </attribute>
+    <attribute id="COUNTRYID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRYID"/>
+      <keyMapping columnObjectName="Join_1" columnName="COUNTRYID"/>
+    </attribute>
+    <attribute id="COUNTRYNAME" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRYNAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="COUNTRYNAME"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="POPULATION" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="POPULATION"/>
+      <measureMapping columnObjectName="Join_1" columnName="POPULATION"/>
+      <exceptionAggregationMetadata>
+        <attribute attributeName="CITYID"/>
+      </exceptionAggregationMetadata>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="231"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="T_CITY" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="176"/>
+    </shape>
+    <shape modelObjectName="T_COUNTRY" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="191"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_RANK_SUM3" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_RANK"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="T_DAILY_SALES">
+    <resourceUri>T_DAILY_SALES</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="STORE_ID"/>
+      <viewAttribute id="MONTH"/>
+      <viewAttribute id="DAY"/>
+      <viewAttribute id="AMOUNT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="T_DAILY_SALES"/>
+    <rankingFilter type="SUM" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <partitionViewAttributeName id="STORE_ID"/>
+      <partitionViewAttributeName id="MONTH"/>
+      <order byViewAttributeName="DAY" direction="ASC"/>
+      <rankThreshold>
+        <value>10</value>
+      </rankThreshold>
+      <rankViewAttributeName>Rank_Column</rankViewAttributeName>
+    </rankingFilter>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Rank_1">
+  <attributes>
+    <attribute id="Rank_Column" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank_Column"/>
+      <keyMapping columnObjectName="Rank_1" columnName="Rank_Column"/>
+    </attribute>
+    <attribute id="STORE_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STORE_ID"/>
+      <keyMapping columnObjectName="Rank_1" columnName="STORE_ID"/>
+    </attribute>
+    <attribute id="MONTH" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MONTH"/>
+      <keyMapping columnObjectName="Rank_1" columnName="MONTH"/>
+    </attribute>
+    <attribute id="DAY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DAY"/>
+      <keyMapping columnObjectName="Rank_1" columnName="DAY"/>
+    </attribute>
+    <attribute id="AMOUNT" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AMOUNT"/>
+      <keyMapping columnObjectName="Rank_1" columnName="AMOUNT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="90" y="206"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

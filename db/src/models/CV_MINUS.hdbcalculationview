@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_MINUS" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_INTERSECT"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="T_COUNTRY">
+    <resourceUri>T_COUNTRY</resourceUri>
+  </DataSource>
+  <DataSource id="T_LOCAL_COUNTRY">
+    <resourceUri>T_LOCAL_COUNTRY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:MinusView" id="Minus_1">
+    <viewAttributes>
+      <viewAttribute id="COUNTRYNAME"/>
+      <viewAttribute id="LANGUAGE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="T_COUNTRY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRYNAME" source="COUNTRYNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LANGUAGE" source="LANGUAGE"/>
+    </input>
+    <input node="T_LOCAL_COUNTRY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRYNAME" source="COUNTRYNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LANGUAGE" source="LANGUAGE"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Minus_1">
+  <attributes>
+    <attribute id="COUNTRYNAME" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRYNAME"/>
+      <keyMapping columnObjectName="Minus_1" columnName="COUNTRYNAME"/>
+    </attribute>
+    <attribute id="LANGUAGE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LANGUAGE"/>
+      <keyMapping columnObjectName="Minus_1" columnName="LANGUAGE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Minus_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="108" y="202"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_CURRENCY5" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_CURRENCY4"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="com.sap::SALES_DOCUMENTS">
+    <resourceUri>com.sap::SALES_DOCUMENTS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel id="com.sap::SALES_DOCUMENTS">
+  <attributes>
+    <attribute id="MANDT" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MANDT"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="MANDT"/>
+    </attribute>
+    <attribute id="DOC_NUMBER" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOC_NUMBER"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="DOC_NUMBER"/>
+    </attribute>
+    <attribute id="ITEM" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEM"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="ITEM"/>
+    </attribute>
+    <attribute id="CUSTOMER" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMER"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="CUSTOMER"/>
+    </attribute>
+    <attribute id="POSTING_DATE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POSTING_DATE"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="POSTING_DATE"/>
+    </attribute>
+    <attribute id="CURRENCY" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="CURRENCY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="NET_AMOUNT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NET_AMOUNT"/>
+      <measureMapping columnObjectName="SALES_DOCUMENTS" columnName="NET_AMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="NET_AMOUNT_1" order="8" semanticType="amount" aggregationType="sum" measureType="amount" unconverted="false">
+      <descriptions defaultDescription="NET_AMOUNT_1"/>
+      <unitCurrencyAttribute attributeName="CURRENCY"/>
+      <currencyConversion generateOutputUnitCurrencyAttribute="true" outputUnitCurrencyAttributeName="NET_AMOUNT_1_CURRENCY" method="ERP">
+        <client/>
+        <currencyConversionTables rates="com.sap::TCURR" configuration="com.sap::TCURV" prefactors="com.sap::TCURF" notations="com.sap::TCURN" precisions="com.sap::TCURX"/>
+        <outputDataType datatype="DECIMAL" length="15" scale="2"/>
+        <sourceCurrency>
+          <attribute attributeName="CURRENCY"/>
+        </sourceCurrency>
+        <erpDecimalShift>true</erpDecimalShift>
+        <targetCurrency>
+          <attribute attributeName="CURRENCY"/>
+        </targetCurrency>
+        <referenceDate/>
+      </currencyConversion>
+      <measureMapping columnObjectName="SALES_DOCUMENTS" columnName="NET_AMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="NET_AMOUNT_2" order="9" semanticType="amount" aggregationType="sum" measureType="amount" unconverted="false">
+      <descriptions defaultDescription="NET_AMOUNT_2"/>
+      <fixedCurrency>USD</fixedCurrency>
+      <currencyConversion generateOutputUnitCurrencyAttribute="true" outputUnitCurrencyAttributeName="NET_AMOUNT_2_CURRENCY_1" convert="true" accuracy="COMPATIBILITY" method="ERP" lookup="REGULAR">
+        <client>
+          <value>000</value>
+        </client>
+        <currencyConversionTables rates="com.sap::TCURR" configuration="com.sap::TCURV" prefactors="com.sap::TCURF" notations="com.sap::TCURN" precisions="com.sap::TCURX"/>
+        <outputDataType datatype="DECIMAL" length="15" scale="2"/>
+        <sourceCurrency>
+          <attribute attributeName="CURRENCY"/>
+        </sourceCurrency>
+        <erpDecimalShift>true</erpDecimalShift>
+        <targetCurrency>
+          <value>USD</value>
+        </targetCurrency>
+        <referenceDate>
+          <value>20260601</value>
+        </referenceDate>
+        <exchangeRateType>M</exchangeRateType>
+      </currencyConversion>
+      <measureMapping columnObjectName="SALES_DOCUMENTS" columnName="NET_AMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_TF_TRUE2" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_1"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CV_TF_FALSE2">
+    <resourceUri>CV_TF_FALSE2</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="USER_MODE"/>
+      <viewAttribute id="COUNT_1"/>
+      <viewAttribute id="USERGROUP_NAME" transparentFilter="true"/>
+      <viewAttribute id="CREATOR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="CV_TF_FALSE2"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="USER_MODE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="USER_MODE"/>
+      <keyMapping columnObjectName="Projection_1" columnName="USER_MODE"/>
+    </attribute>
+    <attribute id="USERGROUP_NAME" order="3" displayAttribute="false" attributeHierarchyActive="false" transparentFilter="true">
+      <descriptions defaultDescription="USERGROUP_NAME"/>
+      <keyMapping columnObjectName="Projection_1" columnName="USERGROUP_NAME"/>
+    </attribute>
+    <attribute id="CREATOR" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATOR"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CREATOR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="COUNT_1" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="COUNT_1"/>
+      <measureMapping columnObjectName="Projection_1" columnName="COUNT_1"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="82" y="219"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

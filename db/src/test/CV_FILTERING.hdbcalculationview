@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_FILTERING" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_JOIN"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="T_COUNTRY" clientColumn="COUNTRYNAME">
+    <resourceUri>T_COUNTRY</resourceUri>
+  </DataSource>
+  <DataSource id="T_CITY">
+    <resourceUri>T_CITY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="COUNTRYNAME"/>
+      <viewAttribute id="COUNTRYID"/>
+      <viewAttribute id="CURRENCYID"/>
+      <viewAttribute id="COUNTRYCODE"/>
+      <viewAttribute id="REGIONID"/>
+      <viewAttribute id="LANGUAGE"/>
+      <viewAttribute id="TAXRATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="T_COUNTRY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1">
+    <viewAttributes>
+      <viewAttribute id="CITYID"/>
+      <viewAttribute id="CITYNAME"/>
+      <viewAttribute id="POPULATION" aggregationType="sum"/>
+      <viewAttribute id="TIMEZONE"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="T_CITY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYID" source="CITYID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CITYNAME" source="CITYNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="POPULATION" source="POPULATION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TIMEZONE" source="TIMEZONE"/></input>
+    <input node="Projection_1"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="CITYID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITYID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CITYID"/>
+    </attribute>
+    <attribute id="CITYNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITYNAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="CITYNAME"/>
+    </attribute>
+    <attribute id="TIMEZONE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TIMEZONE"/>
+      <keyMapping columnObjectName="Join_1" columnName="TIMEZONE"/>
+    </attribute></attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="POPULATION" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="POPULATION"/>
+      <measureMapping columnObjectName="Join_1" columnName="POPULATION"/>
+      <exceptionAggregationMetadata>
+        <attribute attributeName="CITYID"/>
+      </exceptionAggregationMetadata>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="123" y="199"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="T_CITY" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="176"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="136.0234375"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="384" y="341"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

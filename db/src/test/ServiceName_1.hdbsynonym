@@ -1,0 +1,26 @@
+{
+  "com.sap::TCURR": {
+    "target": {
+      "object": "TCURR",
+      "schema": "LOGALI"
+    }
+  },
+  "com.sap::TCURV": {
+    "target": {
+      "object": "TCURV",
+      "schema": "LOGALI"
+    }
+  },
+  "com.sap::TCURF": {
+    "target": {
+      "object": "TCURF",
+      "schema": "LOGALI"
+    }
+  },
+  "com.sap::SALES_DOCUMENTS": {
+    "target": {
+      "object": "SALES_DOCUMENTS",
+      "schema": "LOGALI"
+    }
+  }
+}

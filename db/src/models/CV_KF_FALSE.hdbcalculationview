@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_KF_FALSE" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_AGGREGATION"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="com.sap::T_HANA_USERS">
+    <resourceUri>com.sap::T_HANA_USERS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="USER_MODE"/>
+      <viewAttribute id="USERGROUP_NAME"/>
+      <viewAttribute id="USER_ID" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="com.sap::T_HANA_USERS"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="USER_MODE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="USER_MODE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="USER_MODE"/>
+    </attribute>
+    <attribute id="USERGROUP_NAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="USERGROUP_NAME"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="USERGROUP_NAME"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="USER_ID" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="USER_ID"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="USER_ID"/>
+      <exceptionAggregationMetadata>
+        <attribute attributeName="USER_MODE"/>
+      </exceptionAggregationMetadata>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="CC_1" order="4" aggregationType="count" measureType="simple" aggregatable="true" datatype="BIGINT" expressionLanguage="SQL">
+      <formula>&quot;USER_ID&quot;</formula>
+      
+      <exceptionAggregationMetadata>
+        <attribute attributeName="USER_MODE"/>
+      </exceptionAggregationMetadata>
+    </measure>
+    <measure id="CC_2" order="5" aggregationType="sum" measureType="simple" aggregatable="true" datatype="BIGINT" expressionLanguage="SQL">
+      <formula>&quot;CC_1&quot; * &quot;USER_ID&quot;</formula>
+      
+      <exceptionAggregationMetadata>
+        <attribute attributeName="USER_MODE"/>
+      </exceptionAggregationMetadata>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="204"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

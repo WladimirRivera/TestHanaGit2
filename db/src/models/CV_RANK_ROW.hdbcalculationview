@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_RANK_ROW" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_RANK_ROW"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="T_COUNTRY">
+    <resourceUri>T_COUNTRY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="COUNTRYID"/>
+      <viewAttribute id="COUNTRYNAME"/>
+      <viewAttribute id="CURRENCYID"/>
+      <viewAttribute id="COUNTRYCODE"/>
+      <viewAttribute id="REGIONID"/>
+      <viewAttribute id="LANGUAGE"/>
+      <viewAttribute id="TAXRATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="T_COUNTRY"/>
+    <rankingFilter type="ROW_NUMBER" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <partitionViewAttributeName id="LANGUAGE"/>
+      <order byViewAttributeName="REGIONID" direction="ASC"/>
+      <rankThreshold>
+        <value>10</value>
+      </rankThreshold>
+      <rankViewAttributeName>Rank_Column</rankViewAttributeName>
+    </rankingFilter>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Rank_1">
+  <attributes>
+    <attribute id="LANGUAGE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LANGUAGE"/>
+      <keyMapping columnObjectName="Rank_1" columnName="LANGUAGE"/>
+    </attribute>
+    <attribute id="REGIONID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGIONID"/>
+      <keyMapping columnObjectName="Rank_1" columnName="REGIONID"/>
+    </attribute>
+    <attribute id="Rank_Column" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank_Column"/>
+      <keyMapping columnObjectName="Rank_1" columnName="Rank_Column"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="202"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

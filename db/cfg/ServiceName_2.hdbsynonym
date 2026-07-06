@@ -1,0 +1,14 @@
+{
+  "com.sap::T_CITY": {
+    "target": {
+      "object": "T_CITY",
+      "schema": "LOGALI"
+    }
+  },
+  "com.sap::T_COUNTRY": {
+    "target": {
+      "object": "T_COUNTRY",
+      "schema": "LOGALI"
+    }
+  }
+}

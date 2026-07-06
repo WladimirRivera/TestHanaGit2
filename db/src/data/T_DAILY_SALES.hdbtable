@@ -1,0 +1,8 @@
+COLUMN TABLE "T_DAILY_SALES" (
+    "STORE_ID"    NVARCHAR(10)  NOT NULL,
+    "MONTH"       NVARCHAR(7)   NOT NULL, -- Format 'YYYY-MM'
+    "DAY"         INTEGER       NOT NULL,
+    "AMOUNT"      DECIMAL(15,2) NOT NULL,
+    PRIMARY KEY ("STORE_ID", "MONTH", "DAY")
+)
+COMMENT 'Daily Sales Table';

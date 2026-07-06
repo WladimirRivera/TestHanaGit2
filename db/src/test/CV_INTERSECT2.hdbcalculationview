@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_INTERSECT2" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_JOIN"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="T_LOCAL_COUNTRY">
+    <resourceUri>T_LOCAL_COUNTRY</resourceUri>
+  </DataSource>
+  <DataSource id="T_COUNTRY">
+    <resourceUri>T_COUNTRY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="COUNTRYID"/>
+      <viewAttribute id="COUNTRYNAME"/>
+      <viewAttribute id="CURRENCYID"/>
+      <viewAttribute id="COUNTRYCODE"/>
+      <viewAttribute id="REGIONID"/>
+      <viewAttribute id="LANGUAGE"/>
+      <viewAttribute id="TAXRATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="T_LOCAL_COUNTRY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="COUNTRYID"/>
+      <viewAttribute id="COUNTRYNAME"/>
+      <viewAttribute id="CURRENCYID"/>
+      <viewAttribute id="COUNTRYCODE"/>
+      <viewAttribute id="REGIONID"/>
+      <viewAttribute id="LANGUAGE"/>
+      <viewAttribute id="TAXRATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="T_COUNTRY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:IntersectView" id="Intersect_1">
+    <viewAttributes>
+      <viewAttribute id="COUNTRYNAME"/>
+      <viewAttribute id="LANGUAGE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRYNAME" source="COUNTRYNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LANGUAGE" source="LANGUAGE"/>
+    </input>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRYNAME" source="COUNTRYNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LANGUAGE" source="LANGUAGE"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Intersect_1">
+  <attributes>
+    <attribute id="COUNTRYNAME" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRYNAME"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="COUNTRYNAME"/>
+    </attribute>
+    <attribute id="LANGUAGE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LANGUAGE"/>
+      <keyMapping columnObjectName="Intersect_1" columnName="LANGUAGE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-42" y="338"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="273" y="338"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Intersect_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="123" y="232"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>
