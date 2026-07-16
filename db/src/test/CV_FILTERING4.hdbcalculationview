@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_FILTERING4" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_JOIN"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="com.sap::SALES_DOCUMENTS">
+    <resourceUri>com.sap::SALES_DOCUMENTS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel id="com.sap::SALES_DOCUMENTS" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="MANDT" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MANDT"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="MANDT"/>
+    </attribute>
+    <attribute id="DOC_NUMBER" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOC_NUMBER"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="DOC_NUMBER"/>
+    </attribute>
+    <attribute id="ITEM" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEM"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="ITEM"/>
+    </attribute>
+    <attribute id="CUSTOMER" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMER"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="CUSTOMER"/>
+    </attribute>
+    <attribute id="POSTING_DATE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POSTING_DATE"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="POSTING_DATE"/>
+    </attribute>
+    <attribute id="CURRENCY" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="SALES_DOCUMENTS" columnName="CURRENCY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="NET_AMOUNT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NET_AMOUNT"/>
+      <measureMapping columnObjectName="SALES_DOCUMENTS" columnName="NET_AMOUNT"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+
+  <filter>&quot;CURRENCY&quot; = 'USD'</filter>
+
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

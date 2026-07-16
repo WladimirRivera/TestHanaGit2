@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_CAL_COL3" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_CAL_COL4" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
 <descriptions defaultDescription="CV_1"/>
 <localVariables/>
 <variableMappings/>
@@ -121,12 +121,14 @@
       <exceptionAggregationMetadata>
       
       
+      
         <attribute attributeName="COUNTRYNAME"/>
+      
       
       
       </exceptionAggregationMetadata>
     </measure>
-    <measure id="CC_3" order="14" aggregationType="max" measureType="simple" datatype="NVARCHAR" length="13" expressionLanguage="SQL" aggregatable="true">
+    <measure id="CC_3" order="14" aggregationType="count" measureType="simple" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
       <formula>CASE 
     WHEN &quot;TAXRATE&quot; &gt;= 0.18 THEN 'ALTO' 
     ELSE 'BAJO' 
@@ -137,7 +139,9 @@ END</formula>
       <exceptionAggregationMetadata>
       
       
+      
         <attribute attributeName="COUNTRYNAME"/>
+      
       
       
       </exceptionAggregationMetadata>

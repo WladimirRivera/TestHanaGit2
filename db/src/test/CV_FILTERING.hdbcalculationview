@@ -75,6 +75,11 @@
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
       <upperLeftCorner x="40" y="85"/>
     </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="384" y="341"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
     
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
@@ -86,13 +91,8 @@
       <rectangleSize width="176"/>
     </shape>
     <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="620" y="30"/>
-      <rectangleSize width="136.0234375"/>
-    </shape>
-    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="384" y="341"/>
-      <rectangleSize height="30" width="160"/>
-    </shape>
-  </shapes>
+      <upperLeftCorner x="276" y="30"/>
+      <rectangleSize width="191.9697265625"/>
+    </shape></shapes>
 </layout>
 </Calculation:scenario>
