@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_CURRENCY5" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
-<descriptions defaultDescription="CV_CURRENCY4"/>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_CURRENCY" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="CV_CURRENCY"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -67,7 +67,7 @@
     <measure id="NET_AMOUNT_2" order="9" semanticType="amount" aggregationType="sum" measureType="amount" unconverted="false">
       <descriptions defaultDescription="NET_AMOUNT_2"/>
       <fixedCurrency>USD</fixedCurrency>
-      <currencyConversion generateOutputUnitCurrencyAttribute="true" outputUnitCurrencyAttributeName="NET_AMOUNT_2_CURRENCY_1" convert="true" accuracy="COMPATIBILITY" method="ERP" lookup="REGULAR">
+      <currencyConversion generateOutputUnitCurrencyAttribute="true" outputUnitCurrencyAttributeName="NET_AMOUNT_2_CURRENCY" convert="true" accuracy="COMPATIBILITY" method="ERP" lookup="REGULAR">
         <client>
           <value>000</value>
         </client>
@@ -88,11 +88,9 @@
       <measureMapping columnObjectName="SALES_DOCUMENTS" columnName="NET_AMOUNT"/>
       <exceptionAggregationMetadata/>
     </measure>
-  
     <measure id="NET_AMOUNT_3" order="10" semanticType="amount" aggregationType="sum" measureType="amount">
       <descriptions defaultDescription="NET_AMOUNT_3"/>
       <conversionReference>NET_AMOUNT_2</conversionReference>
-  
       <measureMapping columnObjectName="SALES_DOCUMENTS" columnName="NET_AMOUNT"/>
       <exceptionAggregationMetadata/>
     </measure>
